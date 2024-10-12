@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/tailwind.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="icon" href="public/images/easonclick.png">
+    <link rel="stylesheet" href="public/odometer.css" />
+    <script src="/odometer.js"></script>
+<script src="https://code.highcharts.com/10.3.3/highcharts.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <title>Eason Clicker</title>
+  </head>
+  <body class="bg-black text-white">
+    <main class="flex flex-col justify-center items-center w-screen h-screen">
+      <img
+        src="/public/images/easonclick.png"
+        width="80"
+        class="rounded-full"
+      />
+      <span
+        id="count"
+        class="odometer text-8xl leading-[1.05em]"
+        style="font-family: 'Readex Pro', sans-serif"
+				>0</span
+      >
+      <button
+        class="mt-4 bg-orange-600 hover:bg-orange-900 transition-all duration-150 px-3 py-2 rounded-lg"
+        onclick="onClick()"
+      >
+        Click me!
+      </button>
+    </main>
+  </body>
+  <script>
+    function onClick() {
+      fetch("http://localhost:6969/api/click");
+    }
+
+    setInterval(() => {
+      fetch("http://localhost:6969/api/clicks")
+        .then((res) => res.json())
+        .then(
+          (data) => (document.getElementById("count").innerHTML = data.clicks)
+        );
+    }, 2000);
+  </script>
+</html>
