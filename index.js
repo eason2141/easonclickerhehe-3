@@ -21,4 +21,4 @@ app.get('/api/clicks', (req, res) => {
 	})
 })
 
-app.listen(6969, () => console.log("Listening."))
+app.listen(3000, () => console.log("Listening."))
